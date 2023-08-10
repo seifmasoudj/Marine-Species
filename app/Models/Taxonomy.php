@@ -9,5 +9,5 @@ class Taxonomy extends Model
 {
     use HasFactory;
 
-    protected $table = "taxonomies"; 
+    protected $table = "taxonomies";   
 }

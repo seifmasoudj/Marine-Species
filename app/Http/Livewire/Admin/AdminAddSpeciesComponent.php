@@ -24,16 +24,17 @@ class AdminAddSpeciesComponent extends Component
     public $family;
     public $genus;  
     public $species; 
+    public $category; 
 
     public function mount()
     {
-        $this->status = 'health';
+        $this->status = 'Available';
     }
 
     public function updated($fields)
     {
         $this->validateOnly($fields,[
-        'regularName' => 'required',
+        'regularName' => 'required|unique:marinespecies',
         'ScientificName' => 'required',
         'Description' => 'required', 
         'details' => 'required', 
@@ -45,14 +46,15 @@ class AdminAddSpeciesComponent extends Component
         'genus' => 'required',
         'species' => 'required',      
         'status' => 'required',
-        'images' => 'required'
+        'images' => 'required|mimes:jpg,jpeg,bmp,png',
+        'category' => 'required',
         ]);
     }
 
     public function AddSpecies()
     {
         $this->validate([
-            'regularName' => 'required',
+            'regularName' => 'required|unique:marinespecies',
             'ScientificName' => 'required',
             'Description' => 'required',
             'details' => 'required', 
@@ -64,7 +66,8 @@ class AdminAddSpeciesComponent extends Component
             'genus' => 'required',
             'species' => 'required',
             'status' => 'required',       
-            'images' => 'required'
+            'images' => 'required|mimes:jpg,jpeg,bmp,png',
+            'category' => 'required',
         ]);
 
         $specie = new MarineSpecies();
@@ -79,9 +82,10 @@ class AdminAddSpeciesComponent extends Component
         $specie->family = $this->family;
         $specie->genus = $this->genus;     
         $specie->species = $this->species;  
-        $specie->status = $this->status;        
+        $specie->status = $this->status;      
+        $specie->category = $this->category;  
         $imageName = Carbon::now()->timestamp. '.' .$this->images->extension();
-        $this->images->storeAs('species',$imageName);
+        $this->images->storeAs('NewSpecies',$imageName);
         $specie->images =  $imageName;
         $specie->save();
 

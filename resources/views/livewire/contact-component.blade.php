@@ -6,10 +6,10 @@
       <div class="container">
 
         <ol>
-          <li><a href="index.html">Home</a></li>
-          <li>Inner Page</li>
+          <li><a href="/">Home</a></li>
+          <li>Contact</li>
         </ol>
-        <h2>Inner Page</h2>
+        <h2>Contact Page</h2>
 
       </div>
     </section><!-- End Breadcrumbs -->
@@ -20,7 +20,7 @@
 
         <div class="section-title">
           <h2>Contact</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p>Contact us.</p>
         </div>
 
         <div class="row">
@@ -51,29 +51,35 @@
           </div>
 
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form method="post" role="form" class="php-email-form" wire:submit.prevent="storeContact">
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="name">Your Name</label>
-                  <input type="text" name="name" class="form-control" id="name" required>
+                  <input type="text" name="name" class="form-control" id="name" wire:model="name" required>
+                  @error('name')  <p class="text-danger">{{ $message }}</p> @enderror  
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="name">Your Email</label>
-                  <input type="email" class="form-control" name="email" id="email" required>
+                  <label for="email">Your Email</label>
+                  <input type="email" class="form-control" name="email" id="email" wire:model="email" required>
+                  @error('email')  <p class="text-danger">{{ $message }}</p> @enderror  
                 </div>
               </div>
               <div class="form-group">
-                <label for="name">Subject</label>
-                <input type="text" class="form-control" name="subject" id="subject" required>
+                <label for="phone">Phone</label>
+                <input type="text" class="form-control" name="phone" id="phone" wire:model="phone" required>
+                @error('phone')  <p class="text-danger">{{ $message }}</p> @enderror  
               </div>
               <div class="form-group">
-                <label for="name">Message</label>
-                <textarea class="form-control" name="message" rows="10" required></textarea>
+                <label for="message">Message</label>
+                <textarea class="form-control" name="message" rows="10" wire:model="message" required></textarea>
+                @error('message')  <p class="text-danger">{{ $message }}</p> @enderror  
               </div>
               <div class="my-3">
                 {{-- <div class="loading">Loading</div> --}}
                 <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
+                @if(Session::has('message'))
+                 <div class="alert alert-success" role="alert">{{ Session::get('message') }}</div>
+                @endif
               </div>
               <div class="text-center"><button type="submit">Send Message</button></div>
             </form>

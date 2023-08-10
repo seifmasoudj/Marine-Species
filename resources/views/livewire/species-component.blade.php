@@ -1,15 +1,12 @@
 
 <main id="main">
-
-    <section class="inner-page breadcrumbs" id="breadcrumbs">
-     
-      <section id="team" class="team section-bg">
-      <div class="container-fluid">
+    <section class="inner-page breadcrumbs team section-bg" id="breadcrumbs">
+      <div class="container">
         <ol>
-          <li><a href="index.html">Home</a></li>
+          <li><a href="/">Home</a></li>
           <li>Species</li>
         </ol>
-        <h4>Species</h4>
+        <h4>Species Page</h4>
         <div class="section-title">
           <h2>Species</h2>
           <p>See All Species Available at Zanzibar Island, and their Characteristics, Scientific Name, Behavior, Released Date and Status of the Species.</p>
@@ -19,7 +16,7 @@
           @foreach ($species as $specie)
           <div class="col-lg-6  mt-4 mt-lg-8">
             <div class="member d-flex align-items-start">
-              <div class="pic"><img src="{{ asset('assets/img/species') }}/{{ $specie->images }}" class="img-fluid" alt=""></div>
+              <div class="pic"><img src="{{ asset('assets/img/NewSpecies') }}/{{ $specie->images }}" class="img-fluid" alt=""></div>
               <div class="member-info text-start text-success">
                 <div class="row">
                   <div class="col-md-6">
@@ -63,9 +60,7 @@
           </div>
           @endforeach
         </div>
-
       </div>
     </section>
-
   </main>
   <!-- End #main -->

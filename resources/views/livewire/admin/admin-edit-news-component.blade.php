@@ -16,25 +16,25 @@
                    @if(Session::has('message'))
                    <div class="alert alert-success" role="alert">{{ Session::get('message') }}</div>
                    @endif
-                   <form class="form-horizontal" wire:submit.prevent="updatedNews">
+                   <form class="form-horizontal" wire:submit.prevent="updateNews">
                     <div class="row">                        
                         <div class="col-6">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="">Title</label>                              
+                                <label class="col-md-4 control-label" for="title">Title <span class="text-danger">*</span></label>                              
                                 <input type="text" placeholder="Enter title" class="form-control input-md @error('title') border border-danger @enderror" value="{{old('title')}}" wire:model="title">
                                 @error('title')  <p class="text-danger">{{ $message }}</p> @enderror                              
                             </div>
                         </div>                      
                         <div class="col-6">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="">Description</label>    
+                                <label class="col-md-4 control-label" for="">Description <span class="text-danger">*</span></label>    
                                 <textarea name="Descriptions" id="Descriptions" placeholder="Enter Description" class="form-control input-md @error('Descriptions') border border-danger @enderror" value="{{old('Descriptions')}}" wire:model="Descriptions"></textarea>                          
                                 @error('Descriptions')  <p class="text-danger">{{ $message }}</p> @enderror                              
                             </div>
                         </div>                       
                         <div class="col-6">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="">Status</label>   
+                                <label class="col-md-4 control-label" for="">Status <span class="text-danger">*</span></label>   
                                 <div class="col-md-4">                          
                                     <select class="form-control input-md @error('status') border border-danger @enderror" value="{{old('status')}}" name="status" id="status" wire:model="status">
                                         <option value="active">Active</option>

@@ -35,75 +35,78 @@
       <div class="container">
 
         <div class="row">
-          <div class="col-lg-5 section-title text-center">
-            <input class="form-control me-1" type="search" placeholder="Search to filter species..." aria-label="Search..." wire:model="searchTerm"><br/>
-            <p>Search Species by Regular Name, Common Name, Status and Taxonomy.</p>
-          </div>
-          <div class="col-lg-7">
+          <div class="col-lg-4">
             <div class="section-title text-center">
               <h2>Available Species</h2>
               <p>See All Species Available at Zanzibar Island, and their Characteristics, Scientific Name, Behavior, Released Date and Status of the Species by filter.</p>
             </div>
+          </div>          
+          <div class="col-lg-4 text-center text-strong">
+            @foreach ($notifications as $notification)
+            <a href="{{ route('species') }}"><div class="alert alert-success" role="alert">{{ $notification->text }} !!</div></a>
+            @endforeach            
+          </div>
+          <div class="col-lg-4 section-title text-center">
+            <input class="form-control me-1" type="search" placeholder="Search to filter species..." aria-label="Search..." wire:model="searchTerm"><br/>
+            <p>Search Species by Regular Name, Common Name, Status and Taxonomy.</p>
           </div>
         </div>
 
         <div class="row">
           <div class="col-lg-8">
-            @foreach ($species as $specie)
-              <div class="col-lg-12 mt-4 mt-lg-8">
-                <div class="member d-flex align-items-start">
-                  <div class="pic"><img src="{{ asset('assets/img/species') }}/{{ $specie->images }}" class="img-fluid" alt=""></div>
-                  <div class="member-info text-start text-success">
-                      <div class="row">
-                        <div class="col-md-6">
-                          Common Name :
+            @if ($species->count())
+              @foreach ($species as $specie)
+                <div class="col-lg-12 mt-4 mt-lg-8">
+                  <div class="member d-flex align-items-start">
+                    <div class="pic"><img src="{{ asset('assets/img/NewSpecies') }}/{{ $specie->images }}" class="img-fluid" alt=""></div>
+                    <div class="member-info text-start text-success">
+                        <div class="row">
+                          <div class="col-md-6">
+                            Common Name :
+                          </div>
+                          <div class="col-md-6">
+                            {{ $specie->regularName }}
+                          </div>
                         </div>
-                        <div class="col-md-6">
-                          {{ $specie->regularName }}
+                        <div class="row">
+                          <div class="col-md-6">
+                            Scientific Name :
+                          </div>
+                          <div class="col-md-6">
+                            {{ $specie->ScientificName }}
+                          </div>
                         </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          Scientific Name :
+                        <div class="row">
+                          <div class="col-md-6">
+                            Descriptions :
+                          </div>
+                          <div class="col-md-6">
+                            {{ $specie->Description }} 
+                          </div>
                         </div>
-                        <div class="col-md-6">
-                          {{ $specie->ScientificName }}
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          Descriptions :
-                        </div>
-                        <div class="col-md-6">
-                          {{ $specie->Description }} 
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          Status :
-                        </div>
-                        <div class="col-md-6">
-                          {{ $specie->status }}
-                        </div>
-                      </div>      
-                      <div class="row">
-                        <div class="col-md-6">
-                          Created At :
-                        </div>
-                        <div class="col-md-6">
-                          {{ $specie->created }}
-                        </div>
-                      </div>                        
+                        <div class="row">
+                          <div class="col-md-6">
+                            Status :
+                          </div>
+                          <div class="col-md-6">
+                            {{ $specie->status }}
+                          </div>
+                        </div>                                                  
+                    </div>
+                    <div class="gap-8">
+                      <a href="{{ route('species.details',['regularName'=>$specie->regularName]) }}">                
+                        <i class="btn btn-primary btn-sm">view</i> 
+                      </a>                
+                    </div>
                   </div>
-                  <div class="gap-8">
-                    <a href="{{ route('species.details',['regularName'=>$specie->regularName]) }}">                
-                      <i class="btn btn-primary btn-sm">view</i> 
-                    </a>                
-                  </div>
-                </div>
-             </div>
-            @endforeach
-            {{ $species->links() }}
+              </div>
+              @endforeach
+            @else
+            <div class="alert alert-warning text-center" role="alert">No Species Found, try Search again!</div>
+            @endif
+            <p style="padding:2px 0px">
+              {{ $species->links() }}
+            </p>           
           </div>
          
           <div class="col-lg-4">
@@ -114,19 +117,23 @@
               <div class="col-8 text-capitalize text-left">
                 <img src="{{asset('assets/img/flash.gif')}}" alt="iamges" style="width: 45px;">
               </div>
-            </div>    
-            @foreach ($news as $new)
-              <div class="portfolio-description">
-                <a href="{{ route('news.details',['title'=>$new->title]) }}">                
-                  {{$new->title}} 
-                </a>                
-                <p>
-                  <i class="text-danger">Posted at:</i> <span>{{$new->created_at}}</span>
-                </p>
-              </div>
-            @endforeach            
+            </div> 
+            @if ($news->count())   
+              @foreach ($news as $new)
+                <div class="portfolio-description">
+                  <a href="{{ route('news.details',['title'=>$new->title]) }}">                
+                    {{$new->title}} 
+                  </a>                
+                  <p>
+                    <i class="text-danger">Posted at:</i> <span>{{$new->created_at}}</span>
+                  </p>
+                </div>
+              @endforeach 
+            @else
+              <div class="alert alert-warning" role="alert">No News Found, try Search again!</div>
+            @endif
+            {{ $news->links() }}           
           </div>
-
         </div>
 
       </div>
@@ -137,22 +144,3 @@
   </main>
   <!-- End #main -->
 </div>
-
-@push('scripts')
-    <script type=text/javascript>
-        var path = "{{ route('autocomplete') }}";
-        $('input.typeahead').typeahead({
-            source: function(query,process){
-                return $.get(path,{query:query},function(data){
-                    return process(data);
-                });
-            }
-        });
-
-        $(document).ready(function(){
-          $('input.typeahead').change(function(){
-            $('sform').submit();
-          })
-        })
-    </script>
-@endpush

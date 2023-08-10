@@ -9,6 +9,7 @@ use Livewire\WithPagination;
 class AdminNewsComponent extends Component
 {
     use WithPagination;
+    public $searchTerm;
     
     public function deleteNews($id)
     {
@@ -19,7 +20,10 @@ class AdminNewsComponent extends Component
     
     public function render()
     {
-        $news = News::orderBy('created_at','DESC')->get()->take(10);
+        $search = '%' . $this->searchTerm . '%';
+        $news = News::orderBy('created_at','DESC')->where('title','LIKE',$search)
+        ->orwhere('status','LIKE',$search)
+        ->orwhere('id','DESC')->paginate(5);
         return view('livewire.admin.admin-news-component',['news'=>$news])->layout('layouts.base');
     }
 }

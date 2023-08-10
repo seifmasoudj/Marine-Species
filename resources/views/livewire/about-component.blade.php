@@ -6,10 +6,10 @@
       <div class="container">
 
         <ol>
-          <li><a href="index.html">Home</a></li>
+          <li><a href="/">Home</a></li>
           <li>About</li>
         </ol>
-        <h2>About</h2>
+        <h2>About Page</h2>
 
       </div>
     </section><!-- End Breadcrumbs -->
@@ -21,25 +21,20 @@
         </div>
 
         <div class="row content">
-          <div class="col-lg-6">
+          <div class="col-lg-12 text-start">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
-            </p>
-            <ul>
-              <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
-              <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit</li>
-              <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
-            </ul>
-          </div>
-          <div class="col-lg-6 pt-4 pt-lg-0">
-            <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-            <a href="#" class="btn-learn-more">Learn More</a>
-          </div>
+              Zanzibar Marine Species Information System Is part of raising and producing 
+              marine organisms with the aim of boosting the economy and increasing 
+              employment for young people. Zanzibar is one of the areas that have 
+              invested in these projects by building a large place for marine species.
+              Given that Zanzibar is surrounded by the Indian Ocean on all its islands, 
+              the revolutionary government of Zanzibar saw fit to establish and build a 
+              major center for these activities with the aim of boosting the economy and
+              providing opportunities and jobs for its citizens. Due to the current
+              president of Zanzibar’s emphasis on investing in the blue economy has led me to want 
+              to create a web system that will record the information of all species.
+            </p>           
+          </div>         
         </div>
       </div>
     </section>

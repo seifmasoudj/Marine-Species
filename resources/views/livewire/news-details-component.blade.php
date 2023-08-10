@@ -17,10 +17,10 @@
         </ol>
        
         <div class="row">
-          <div class="col-md-1">
-            <h2>News</h2>
+          <div class="col-md-2">
+            <h4>News Page</h4>
           </div>
-          <div class="col-md-11 text-left">
+          <div class="col-md-10 text-left">
             <img src="{{asset('assets/img/flash.gif')}}" alt="iamges" style="width: 45px;">
           </div>
         </div>
@@ -47,7 +47,7 @@
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-6">
-              <a href="#" class="btn btn-outline-success">Download</a>
+              {{-- <a href="{{ route('exportNewsPDF',['download'=>'pdf']) }}" class="btn btn-outline-success">Download</a> --}}
             </div>
           </div>
         </div>

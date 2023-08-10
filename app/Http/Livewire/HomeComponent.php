@@ -6,6 +6,7 @@ use App\Models\News;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\MarineSpecies;
+use App\Models\notification;
 
 class HomeComponent extends Component
 {
@@ -15,7 +16,8 @@ class HomeComponent extends Component
     public function render()
     {
         $search = '%' . $this->searchTerm . '%';
-        $news = News::orderBy('created_at','DESC')->get()->take(10);
+        $notifications = notification::orderBy('created_at','DESC')->get()->take(5);
+        $news = News::orderBy('created_at','DESC')->paginate(5);
         $species = MarineSpecies::orderBy('created_at','DESC')->where('regularName','LIKE',$search)
         ->orwhere('ScientificName','LIKE',$search)
         ->orwhere('status','LIKE',$search)
@@ -27,6 +29,6 @@ class HomeComponent extends Component
         ->orwhere('genus','LIKE',$search)
         ->orwhere('species','LIKE',$search)
         ->orwhere('id','DESC')->paginate(4);     
-        return view('livewire.home-component',['species'=>$species,'news'=>$news])->layout('layouts.base');
+        return view('livewire.home-component',['notifications'=>$notifications,'species'=>$species,'news'=>$news])->layout('layouts.base');
     }
 }

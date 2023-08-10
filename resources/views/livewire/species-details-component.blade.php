@@ -9,7 +9,7 @@
         <li><a href="/">Home</a></li>
         <li>Species Details</li>
       </ol>
-      <h2>Species</h2>
+      <h2>Species Page</h2>
 
     </div>
   </section>
@@ -32,7 +32,7 @@
             <a class="list-group-item list-group-item-action" href="#list-item-4">Taxonomy</a>
           </div>
           <p>
-            <div class="pic"><img src="{{ asset('assets/img/species') }}/{{ $specie->images }}" class="img-fluid rounded-circle img-thumbnail" alt="image"></div>
+            <div class="pic"><img src="{{ asset('assets/img/NewSpecies') }}/{{ $specie->images }}" class="img-fluid rounded-circle img-thumbnail" alt="image"></div>
           </p>
         </div>
         <div class="col-lg-9">
@@ -52,7 +52,7 @@
           <p class="text-success text-center">
             Posted at: {{$specie->created_at}}
           </p>
-          <a href="#" class="btn btn-outline-success">Download</a>
+          {{-- <a href="{{ route('exportPDF',['download'=>'pdf']) }}" class="btn btn-outline-success">Download</a> --}}
         </div>
       </div>
     </div>

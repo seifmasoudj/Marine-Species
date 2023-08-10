@@ -32,7 +32,7 @@ class AdminSpeciesComponent extends Component
                 ->orwhere('family','LIKE',$search)
                 ->orwhere('genus','LIKE',$search)
                 ->orwhere('species','LIKE',$search)
-                ->orwhere('id','DESC')->paginate(10);
+                ->orwhere('id','DESC')->paginate(4);
         return view('livewire.admin.admin-species-component',['species'=>$species])->layout('layouts.base');
     }
 }

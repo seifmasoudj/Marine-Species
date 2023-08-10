@@ -4,48 +4,44 @@ namespace App\Http\Livewire\Admin;
 
 use App\Models\News;
 use Livewire\Component;
-use Livewire\WithFileUploads;
 
 class AdminEditNewsComponent extends Component
 {
-    use WithFileUploads; 
-
     public $title;
-    public $Description;
+    public $Descriptions;
     public $status;  
-    public $news_id;
+    public $new_id;
 
-    public function mount($news_id)
+    public function mount($new_id)
     {
-        $new = News::find($news_id);
-        $this->title = $new->title;
-        $this->Description = $new->Description;
-        $this->status = $new->status;
-        $this->news_id = $new->news_id;
+        $news = News::find($new_id);
+        $this->title = $news->title;
+        $this->Descriptions = $news->Descriptions;
+        $this->status = $news->status;
     }
 
     public function updated($fields)
     {
         $this->validateOnly($fields,[
-            'title' => 'required',
-            'Description' => 'required',       
+            'title' => 'required|max:255|min:8|unique:news',
+            'Descriptions' => 'required|min:8',        
             'status' => 'required'
         ]);
     }
 
-    public function updatedSpecies()
+    public function updateNews()
     {
         $this->validate([
-            'title' => 'required',
-            'Description' => 'required',       
+            'title' => 'required|max:255|min:8|unique:news',
+            'Descriptions' => 'required|min:8',         
             'status' => 'required'
         ]);
 
-        $new = News::find($this->news_id);
-        $new->title = $this->title;
-        $new->Description = $this->Description;
-        $new->status = $this->status;
-        $new->save();
+        $news = News::find($this->new_id);
+        $news->title = $this->title;
+        $news->Descriptions = $this->Descriptions;
+        $news->status = $this->status;
+        $news->save();
         session()->flash('message','News has been updated successfully!');
     }
     public function render()

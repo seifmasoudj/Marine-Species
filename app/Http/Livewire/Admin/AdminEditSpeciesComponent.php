@@ -14,19 +14,38 @@ class AdminEditSpeciesComponent extends Component
     public $regularName;
     public $ScientificName;
     public $Description; 
+    public $details; 
     public $status;
     public $images;
-    public $species_id;
+    public $newimage;
+    public $kingdome;
+    public $phylum;
+    public $class; 
+    public $orders;
+    public $family;
+    public $genus;
+    public $category; 
+    public $species;
+    public $specie_id;
 
-    public function mount($species_id)
+    public function mount($specie_id)
     {
-        $specie = MarineSpecies::find($species_id);
-        $this->regularName = $specie->name;
-        $this->ScientificName = $specie->ScientificName;
-        $this->Description = $specie->Description;
-        $this->status = $specie->status;
-        $this->images = $specie->image;
-        $this->species_id = $specie->species_id;
+        $species = MarineSpecies::find($specie_id);
+        $this->regularName = $species->regularName;
+        $this->ScientificName = $species->ScientificName;
+        $this->Description = $species->Description;
+        $this->details = $species->details;
+        $this->status = $species->status;
+        $this->images = $species->image;
+        $this->newimage = $species->newimage;
+        $this->kingdome = $species->kingdome;
+        $this->phylum = $species->phylum;
+        $this->class = $species->class;
+        $this->orders = $species->orders;
+        $this->family = $species->family;
+        $this->genus = $species->genus;
+        $this->species = $species->species;
+        $this->category = $species->category;
     }
 
     public function updated($fields)
@@ -35,33 +54,58 @@ class AdminEditSpeciesComponent extends Component
             'regularName' => 'required',
             'ScientificName' => 'required',
             'Description' => 'required',
+            'details' => 'required',
             'status' => 'required',
-            'images' => 'required|mimes:jpeg,png',
+            'kingdome' => 'required',
+            'phylum' => 'required',
+            'class' => 'required',
+            'orders' => 'required',
+            'family' => 'required',
+            'genus' => 'required',
+            'species' => 'required',
+            'category' => 'required'
         ]);
     }
 
-    public function updatedNews()
+    public function UpdateSpecies()
     {
         $this->validate([
             'regularName' => 'required',
             'ScientificName' => 'required',
             'Description' => 'required',
+            'details' => 'required',
             'status' => 'required',
-            'images' => 'required|mimes:jpeg,png',
+            'kingdome' => 'required',
+            'phylum' => 'required',
+            'class' => 'required',
+            'orders' => 'required',
+            'family' => 'required',
+            'genus' => 'required',
+            'species' => 'required',
+            'category' => 'required'
         ]);
 
-        $specie = MarineSpecies::find($this->species_id);
-        $specie->regularName = $this->regularName;
-        $specie->ScientificName = $this->ScientificName;
-        $specie->Description = $this->Description;
-        $specie->status = $this->status;
+        $species = MarineSpecies::find($this->specie_id);
+        $species->regularName = $this->regularName;
+        $species->ScientificName = $this->ScientificName;
+        $species->Description = $this->Description;
+        $species->details = $this->details;
+        $species->status = $this->status;
+        $species->kingdome = $this->kingdome;
+        $species->phylum = $this->phylum;
+        $species->class = $this->class;
+        $species->orders = $this->orders;
+        $species->family = $this->family;
+        $species->genus = $this->genus;
+        $species->species = $this->species;
+        $species->category = $this->category;  
         if($this->newimage)
         {
             $imageName = Carbon::now()->timestamp. '.' .$this->newimage->extension();
-            $this->newimage->storeAs('species',$imageName);
-            $specie->images =  $imageName;
+            $this->newimage->storeAs('NewSpecies',$imageName);
+            $species->images =  $imageName;
         }
-        $specie->save();
+        $species->save();
         session()->flash('message','Species has been updated successfully!');
     }
     public function render()

@@ -13,13 +13,11 @@ class PDFController extends Controller
         $marines = MarineSpecies::get();
 
         $data = [
-            'title' => 'Welcome to ItSolutionStuff.com',
-            'date' => date('m/d/Y'),
             'species' => $marines
         ];
 
         $pdf = PDF::loadView('myPDF', $data);
 
-        return $pdf->stream('MarineSpecies.pdf');
+        return $pdf->stream('Species.pdf');
     }
 }

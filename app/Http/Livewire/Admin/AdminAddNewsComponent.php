@@ -22,8 +22,8 @@ class AdminAddNewsComponent extends Component
     public function updated($fields)
     {
         $this->validateOnly($fields,[
-        'title' => 'required',
-        'Descriptions' => 'required',       
+        'title' => 'required|max:255|min:8|unique:news',
+        'Descriptions' => 'required|min:8',       
         'status' => 'required',
         ]);
     }
@@ -31,8 +31,8 @@ class AdminAddNewsComponent extends Component
     public function AddNews()
     {
         $this->validate([
-            'title' => 'required',
-            'Descriptions' => 'required',      
+            'title' => 'required|max:255|min:8|unique:news',
+            'Descriptions' => 'required|min:8',        
             'status' => 'required',
         ]);
 

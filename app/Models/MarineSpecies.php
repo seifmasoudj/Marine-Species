@@ -9,5 +9,10 @@ class MarineSpecies extends Model
 {
     use HasFactory;
 
-    protected $table = "marinespecies";    
+    protected $table = "marinespecies";  
+    
+    public function category()
+    {
+        return $this->belongsTo(Category::class,'category_id');
+    }
 }
